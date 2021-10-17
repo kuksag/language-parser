@@ -14,5 +14,7 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    print(relation.parse('abc () {cde (gde)}'))
-    print(relation.parse('abc (x, y, z {t, y}) {[cde (gde) && [o () || p ()]]}'))
+    a = Relation('qwe', [Atom('rty')],
+                 Aim(Aim(RelationCall('abc', args=[Atom('cde')])), '&&', Aim(RelationCall('def', args=[Atom('ghi')]))))
+
+    print(a)
