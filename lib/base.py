@@ -16,7 +16,7 @@ class Atom:
 @attr.s(repr=False)
 class RelationCall:
     id = attr.ib(validator=attr.validators.instance_of(str))
-    args = attr.ib(validator=attr.validators.optional(attr.validators.instance_of(list)), default=None)
+    args = attr.ib(validator=attr.validators.optional(attr.validators.instance_of(list)))
 
     def __repr__(self):
         return 'CALL({}, {})'.format(self.id, self.args)
@@ -39,3 +39,13 @@ class Aim:
             assert isinstance(self.lhs, Aim)
             assert self.op is not None
             return 'AIM({}, {}, {})'.format(self.lhs, self.op, self.rhs)
+
+
+@attr.s(repr=False)
+class Relation:
+    id = attr.ib(validator=attr.validators.instance_of(str))
+    args = attr.ib(validator=attr.validators.optional(attr.validators.instance_of(list)))
+    body = attr.ib(validator=attr.validators.instance_of(Aim))
+
+    def __repr__(self):
+        return 'RELATION({}, {}, {})'.format(self.id, self.args, self.body)

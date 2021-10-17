@@ -46,4 +46,8 @@ def aim():
     return base.Aim(*result)
 
 
-main = aim
+@generate
+def relation():
+    result = yield seq(id_p, open_brace_p >> atom_list_p << close_brace_p,
+                       open_curly_brace_p >> aim << close_curly_brace_p)
+    return base.Relation(*result)

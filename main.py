@@ -8,14 +8,11 @@ from lib.base import *
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Command line arguments')
-    parser.add_argument('-i', '--input', help='input file, stdin by default', default=sys.stdin)
-    parser.add_argument('-o', '--output', help='output file, stdout by default', default=sys.stdout)
+    parser.add_argument('-i', '--input', help='Input file, stdin by default', default=sys.stdin)
+    parser.add_argument('-o', '--output', help='Output file, stdout by default', default=sys.stdout)
     return parser.parse_args()
 
 
 if __name__ == '__main__':
-    print(aim.parse('[[abc (cde) && def (ghi)] && [abc (cde) || def (ghi)]]'))
-    # print(aim.parse('[abc -> cde]'))
-    # print(aim.parse('[abc (cde) && def (ghi)]'))
-    # print(aim.parse('abc (cde)'))
-    # print(aim.parse('[[[abc -> cde] && [cde -> fge]] || abc (cde)]'))
+    print(relation.parse('abc () {cde (gde)}'))
+    print(relation.parse('abc (x, y, z {t, y}) {[cde (gde) && [o () || p ()]]}'))
