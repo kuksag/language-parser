@@ -42,7 +42,7 @@ REL = ID (ATOM_LIST) {AIM}
 
 ### Цель 
 ```regexp
-AIM = [TERM -> TERM] \ AIM && AIM \ AIM || AIM \ REL_CALL 
+AIM = [TERM -> TERM] \ [AIM && AIM] \ [AIM || AIM] \ REL_CALL 
 ```
 - Унификация двух термов.
 - Конъюнкция двух целей.

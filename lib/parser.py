@@ -16,12 +16,12 @@ close_square_brace_p = (s >> string(']') << s).desc('close close brace')
 open_brace_p = (s >> string('(') << s).desc('open curly brace')
 close_brace_p = (s >> string(')') << s).desc('close curly brace')
 
-
 and_operator_p = (s >> string('&&') << s).desc('and operator')
 or_operator_p = (s >> string(r'||') << s).desc('or operator')
 apply_operator_p = (s >> string('->') << s).desc('apply operator')
 
 logic_operators_p = and_operator_p | or_operator_p
+
 
 @generate
 def atom():
@@ -41,8 +41,9 @@ def rel_call():
 @generate
 def aim():
     apply_p = open_square_brace_p >> seq(atom, apply_operator_p, atom) << close_square_brace_p
-    result = yield apply_p | seq(aim, logic_operators_p, aim) | rel_call
-    print(result)
+    aim_p = open_square_brace_p >> seq(aim, logic_operators_p, aim) << close_square_brace_p
+    result = yield apply_p | seq(rel_call) | aim_p
+    return base.Aim(*result)
 
 
 main = aim

@@ -14,5 +14,8 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    print(RelationCall(id='hjk',
-                 args=[Atom(name='abcd', args=[Atom('defg')])]))
+    print(aim.parse('[[abc (cde) && def (ghi)] && [abc (cde) || def (ghi)]]'))
+    # print(aim.parse('[abc -> cde]'))
+    # print(aim.parse('[abc (cde) && def (ghi)]'))
+    # print(aim.parse('abc (cde)'))
+    # print(aim.parse('[[[abc -> cde] && [cde -> fge]] || abc (cde)]'))
