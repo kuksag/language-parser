@@ -1,11 +1,35 @@
 # Типовой проект для языка M на парсер-комбинаторах
 
-## Программы
+Благодаря статье [tomassetti.me/parsing-in-python](https://tomassetti.me/parsing-in-python/) появилась возможность выбора между
+библиотеками. По итогу выбор стоял между [Parsec.py](https://github.com/sighingnow/parsec.py) и [Parsy](https://github.com/python-parsy/parsy) 
+из-за их схожести с либой на haskell -- [parsec](https://hackage.haskell.org/package/parsec). Использован Parsy из-за более дружелюбной документации.
+
+## Сборка и запуск
+
+### Загрузка
+```shell
+git clone git@github.com:kuksag/language-parser.git
+cd language-parser
+pip3 install -r requirements.txt
+```
+
+### Запуск интерактора
+```shell
+python3 main.py
+```
+
+### Запуск тестов
+```shell
+pytest tests/
+python3 main.py --input tests/data.in --output tests/data.out
+```
+
+## Описание программ
 
 Программой на языке M является возможно пустая последовательность определений отношений и одна цель. <br>
 Индентация не является значащей.
 
-## Описание синтаксиса 
+## Описание синтаксиса языка
 
 ### Идентификатор, переменная
 ```regexp

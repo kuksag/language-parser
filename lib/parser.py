@@ -1,8 +1,12 @@
 # from base import *
+import parsy
+
 import lib.base as base
 from parsy import regex, generate, seq, string
 
 s = regex(r'\s*').desc('space characters')
+eol = (s >> regex(r'\n*') >> s).desc('EOL character')
+
 
 id_p = regex(r'[a-zA-Z]+([a-zA-Z]|[0-9])*').desc('id or variable name')
 comma_p = (s >> string(',') << s).desc('comma')
@@ -51,3 +55,6 @@ def relation():
     result = yield seq(id_p, open_brace_p >> atom_list_p << close_brace_p,
                        open_curly_brace_p >> aim << close_curly_brace_p)
     return base.Relation(*result)
+
+
+main = parsy.eof | ((relation | aim) << eol)
