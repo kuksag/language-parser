@@ -3,6 +3,7 @@
 import argparse
 import sys
 from lib.parser import *
+from lib.base import *
 
 
 def parse_args():
@@ -13,7 +14,5 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    print(atom.parse('abcd'))
-    print(atom.parse('abcd {defg}'))
-    print(atom.parse('abcd {defg, xyz}'))
-    print(atom.parse('abcd {defg, xyz {vbn}}'))
+    print(RelationCall(id='hjk',
+                 args=[Atom(name='abcd', args=[Atom('defg')])]))

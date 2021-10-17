@@ -42,8 +42,8 @@ def test_comma():
 
 
 def test_name():
-    assert parser.id_or_var_p.parse('abcd') == 'abcd'
+    assert parser.id_p.parse('abcd') == 'abcd'
     with pytest.raises(ParseError):
-        parser.id_or_var_p.parse('123abcd')
+        parser.id_p.parse('123abcd')
     with pytest.raises(ParseError):
-        parser.id_or_var_p.parse(' abcvd')
+        parser.id_p.parse(' abcvd')

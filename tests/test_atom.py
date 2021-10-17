@@ -4,6 +4,7 @@ from lib.base import Atom
 
 def test_atom_constructor():
     assert parser.atom.parse('abcd') == Atom(name='abcd')
+    assert parser.atom.parse('abcd {}') == Atom(name='abcd', args=[])
     assert parser.atom.parse('abcd {defg}') == Atom(name='abcd', args=[Atom('defg')])
     assert parser.atom.parse('abcd {defg, xyz}') == Atom(name='abcd', args=[Atom('defg'),
                                                                             Atom('xyz')])

@@ -4,7 +4,7 @@ from parsy import regex, generate, seq, string
 
 s = regex(r'\s*').desc('space characters')
 
-id_or_var_p = regex(r'[a-zA-Z]+([a-zA-Z]|[0-9])*').desc('id or variable name')
+id_p = regex(r'[a-zA-Z]+([a-zA-Z]|[0-9])*').desc('id or variable name')
 comma_p = (s >> string(',') << s).desc('comma')
 
 open_curly_brace_p = (s >> string('{') << s).desc('open curly brace')
@@ -25,7 +25,7 @@ logic_operators_p = and_operator_p | or_operator_p
 
 @generate
 def atom():
-    result = yield seq(id_or_var_p, open_curly_brace_p >> atom_list_p << close_curly_brace_p) | seq(id_or_var_p)
+    result = yield seq(id_p, open_curly_brace_p >> atom_list_p << close_curly_brace_p) | seq(id_p)
     return base.Atom(*result)
 
 
@@ -34,7 +34,7 @@ atom_list_p = (atom << comma_p.optional()).at_least(0)
 
 @generate
 def rel_call():
-    result = yield seq(id_or_var_p, open_brace_p >> atom_list_p.optional() << close_brace_p)
+    result = yield seq(id_p, open_brace_p >> atom_list_p.optional() << close_brace_p)
     return base.RelationCall(*result)
 
 
