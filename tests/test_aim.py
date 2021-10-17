@@ -5,7 +5,7 @@ a = Aim(RelationCall('abc', args=[Atom('cde')]))
 b = Aim(Aim(RelationCall('abc', args=[Atom('cde')])), '&&', Aim(RelationCall('def', args=[Atom('ghi')])))
 c = Aim(Aim(RelationCall('abc', args=[Atom('cde')])), '||', Aim(RelationCall('def', args=[Atom('ghi')])))
 d = Aim(Atom('abc'), '->', Atom('cde'))
-e = Aim(c, '&&', d)
+e = Aim(b, '&&', c)
 
 
 def test_aim():
