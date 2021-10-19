@@ -2,7 +2,7 @@
 
 import fileinput
 import argparse
-from lib.parser import main
+from lib.parser import interactor, filer_rarser
 
 
 def parse_args():
@@ -15,17 +15,17 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     if args.input:
-        with open(args.output, 'w+') as output:
-            for line in fileinput.input(args.input):
+        with open(args.input, 'r') as input_data:
+            with open(args.output, 'w+') as output_data:
                 try:
-                    output.write(str(main.parse(line)) + '\n')
+                    output_data.write(str(filer_rarser.parse(input_data.read())))
                 except Exception as e:
-                    output.write(str(e.args[0]) + '\n')
+                    output_data.write(str(e.args[0]) + '\n')
     else:
         while True:
             try:
                 line = input('>>> ')
-                result = main.parse(line)
+                result = interactor.parse(line)
                 print(result)
             except Exception as e:
                 print(e.args[0])

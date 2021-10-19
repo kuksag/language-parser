@@ -47,3 +47,8 @@ def test_name():
         parser.id_p.parse('123abcd')
     with pytest.raises(ParseError):
         parser.id_p.parse(' abcvd')
+
+
+def test_semicolon():
+    assert parser.semicolon_p.parse(';') == ';'
+    assert parser.semicolon_p.parse('      ;  ') == ';'
